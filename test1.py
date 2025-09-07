@@ -117,11 +117,8 @@ def draw_text(x, y, text, font=GLUT_BITMAP_HELVETICA_18, color=(1,1,1)):
     glPopMatrix()
     glMatrixMode(GL_MODELVIEW)
 
-# ---------- Grid (kept like your template) ----------
+# Grid Boundaries
 def draw_grid_and_boundaries():
-
-    # ...existing code...
-
     global grid_colors_randomized, grid_block_colors
     glBegin(GL_QUADS)
     divisions = 4
@@ -188,9 +185,7 @@ def draw_grid_and_boundaries():
     glutSolidCube(1)
     glPopMatrix()
 
-    # ...existing code...
-
-# ---------- Camera (uses your template approach) ----------
+# Camera
 def setupCamera():
     global view_mode, snake
     glMatrixMode(GL_PROJECTION)
@@ -226,7 +221,7 @@ def setupCamera():
         else:
             gluLookAt(0, -CELL * 2, CELL * 2, CELL * 2, 0, 0, 0, 0, 1)
 
-# ---------- Snake Rendering ----------
+#  Snake Rendering 
 def draw_snake():
     # Head (distinct color)
     if not snake:
@@ -254,7 +249,7 @@ def draw_snake():
         glutSolidCube(CELL)
         glPopMatrix()
 
-# ---------- Food Rendering ----------
+#  Food Rendering 
 def draw_food():
     # normal cube (grow) - orange
     if food_normal:
@@ -280,7 +275,7 @@ def draw_food():
         gluSphere(gluNewQuadric(), CELL * 0.9, 24, 24)  # larger sphere
         glPopMatrix()
 
-# ---------- Game Logic ----------
+# Game Logic
 def reset_game():
     global snake, direction, score, game_over
     global food_normal, food_shrink, food_special
@@ -411,7 +406,7 @@ def speed_frames():
     base_speed = SNAKE_STEP_FRAMES - yellow_score
     return max(2, int(base_speed * SNAKE_SPEED_FACTOR))
 
-# ---------- Input ----------
+#  Input 
 def keyboardListener(key, x, y):
     # Snake speed control
     global SNAKE_SPEED_FACTOR
@@ -521,11 +516,8 @@ def specialKeyListener(key, x, y):
             elif key == GLUT_KEY_DOWN:
                 pending_turn = [0, -dy]    # reverse
 
-def mouseListener(button, state, x, y):
-    # not used in snake; kept for template consistency
-    pass
 
-# ---------- Idle / Draw ----------
+#  Idle / Draw 
 def idle():
     global move_frame_counter, game_over, cheat_mode, pending_turn, snake, food_normal, food_shrink, food_special, direction
     if not game_over:
@@ -580,7 +572,6 @@ def showScreen():
 
     glutSwapBuffers()
 
-# ---------- Main ----------
 def main():
     reset_game()
     glutInit()

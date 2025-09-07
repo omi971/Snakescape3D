@@ -417,22 +417,29 @@ def keyboardListener(key, x, y):
     global SNAKE_SPEED_FACTOR
     if key == b'+':
         SNAKE_SPEED_FACTOR = max(0.5, SNAKE_SPEED_FACTOR - 0.5)  # + = faster
+        print("Snake speed increased (faster). Speed factor:", SNAKE_SPEED_FACTOR)
     elif key == b'-':
         SNAKE_SPEED_FACTOR = min(20, SNAKE_SPEED_FACTOR + 0.5)  # - = slower
+        print("Snake speed decreased (slower). Speed factor:", SNAKE_SPEED_FACTOR)
     global game_over
     global grid_rot_horizontal, grid_rot_vertical
     if game_over and key == b"r":
+        print("Game reset!")
         reset_game()
     # Grid rotation controls
     rot_step = 10
     if key == b'a':
         grid_rot_horizontal += rot_step
+        print("Grid rotated left (horizontal):", grid_rot_horizontal)
     elif key == b'd':
         grid_rot_horizontal -= rot_step
+        print("Grid rotated right (horizontal):", grid_rot_horizontal)
     elif key == b'w':
         grid_rot_vertical = min(grid_rot_vertical + rot_step, 120)
+        print("Grid rotated up (vertical):", grid_rot_vertical)
     elif key == b's':
         grid_rot_vertical = max(grid_rot_vertical - rot_step, -20)
+        print("Grid rotated down (vertical):", grid_rot_vertical)
 
     # Move snake forward/backward relative to current heading
     global pending_turn, direction, cheat_mode, grid_colors_randomized, grid_block_colors, grid_block_colors_prev
@@ -443,18 +450,23 @@ def keyboardListener(key, x, y):
             if grid_block_colors is not None:
                 grid_block_colors_prev = [tuple(c) for c in grid_block_colors]
             grid_colors_randomized = True
+            print("Grid colors randomized.")
         else:
             # Restore previous colors
             if grid_block_colors_prev is not None and len(grid_block_colors_prev) == len(grid_block_colors):
                 grid_block_colors = [tuple(c) for c in grid_block_colors_prev]
             grid_colors_randomized = False
+            print("Grid colors restored.")
     # Cheat mode toggle
     if key == b'g':
         cheat_mode = not cheat_mode
+        print(f"Cheat mode {'enabled' if cheat_mode else 'disabled'}.")
         if key == b'w':
             pending_turn = [0, CELL]
+            print("Cheat: Move snake forward.")
         elif key == b's':
             pending_turn = [0, -CELL]
+            print("Cheat: Move snake backward.")
 
     # ---------------------- Exit program function ---------------------- 
     if key == b'q':
