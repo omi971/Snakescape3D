@@ -66,6 +66,6 @@ Enjoy
  * 'w', 'a', 's', 'd' to rotate the grid (but it has a limit for the up and down direction)
  * press 'c' to randomize the snake body color
  * press 'v' enable/disable to snake body color randomly
- * press 'g' to enable/disable cheat mode
+ * press 'g' to enable/disable cheat mode [Omi]
  * press 'h' to enable/disable grid color change randomly
- * press '+' and '-' to increase and decrease snake's speed
+ * press '+' and '-' to increase and decrease snake's speed [Omi]
